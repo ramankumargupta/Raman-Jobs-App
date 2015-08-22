@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+   <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">PutForshare.com</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      
+    </div><!-- /.navbar-collapse -->
+  </div>
+</nav>
+
+</head>
+
+<body ng-controller="mainctrl">
+
+ <!-- Button trigger modal -->
+  <!--<div class="container">-->
+     <!--<div class="row">-->
+        <!--<div class="col-md-12">-->
+          <!--<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">-->
+            <!--Apply-->
+          <!--</button>-->
+        <!--</div>-->
+        <!--<br>-->
+        <!--<br>-->
+     <!--</div>-->
+  <!--</div>-->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/candidates/submit" method="post" class="form-group">
+          <input type="text" name="job_id" placeholder="job_id" class="form-control hidden" value="{{j_id}}">
+            <input type="text" name="job_name" placeholder="job_name" class="form-control hidden" value="{{j_name}}">
+          <label for name = "name">Your Name</label>
+          <input type="text" name="name" placeholder="Your Name" class="form-control">
+          <label for = "email">Your Mail</label>
+          <input type="mail" name="email" placeholder="Your E-mail" class="form-control">
+          <label for="mobileno.">Mobile no.</label>
+          <input type="number" name="mobileno" placeholder="Mobile Number" class="form-control">
+          <label for="github">Github</label>
+          <input type="text" name="github" placeholder="Github" class="form-control"><br>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Apply</button>
+          </div>
+        </form> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  
+  <div class="container">
+      <h1>Candidates</h1>
+    <div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="c in candidates">
+      <div class="thumbnail" >
+        <div class="caption" >
+         <a href="#" class="btn btn-danger pull-right"  ng-click="deletecandidate(c._id)" ng-click="delete()" confirm="Are you sure?" confirm-title="Please?" confirm-ok="Yes" confirm-cancel="No" ><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
+          <h3>{{c.name}}</h3>
+          <p>E-Mail : <b>{{c.email}}</b></p>
+          <p>Mobile No : {{c.mobileno}}</p>
+          <p>Github : {{c.github}}</p>
+          <!--<p>candidate id {{c._id}}</p>-->
+          <!--<p>Job Id {{c.job_id}}</p>-->
+          <p>Applied for : <b>{{c.job_name}}</b></p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  </div>
+
+    <h1 class="container">Jobs</h1>
+ <div class="container">
+     <div class="row">
+         <div class="col-sm-6 col-md-4" ng-repeat="j in jobs">
+             <div class="thumbnail" >
+                 <div class="caption" >
+                     <div class="row">
+                         <div class="col-md-12">
+                             <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal" ng-click="fetchid(j._id); fetch_name(j.name)">
+                                 Apply
+                             </button>
+                             <a href="#" class="btn btn-danger pull-right" ng-click="deletejob(j._id)" ><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
+                         </div>
+                     </div>
+                     <h3>{{j.name}}</h3>
+                    <!--<p>{{j._id}}</p>-->
+                 </div>
+
+             </div>
+         </div>
+     </div>
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js "></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js "></script>
+  <script src="script.js"></script>
+</html>
